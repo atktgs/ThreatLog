@@ -1,0 +1,78 @@
+DELETE /threatlog
+
+PUT /threatlog/
+{
+  "settings": {
+    "index": {
+      "store": {
+        "type": "default"
+      },
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    },
+    "analysis": {
+      "analyzer": {
+        "a0": {
+          "type": "english"
+        }
+      }
+    }
+  }
+}
+
+GET /threatlog/_stats
+
+PUT /threatlog/data/_mapping
+{
+  "data": {
+    "properties": {
+      "data_type" : {
+          "type" : "string",
+          "store" : true,
+          "index" : "not_analyzed"
+      },
+      "created": {
+        "type": "date",
+        "store": true,
+        "index": "not_analyzed"
+      },
+      "updated": {
+        "type": "date",
+        "store": true,
+        "index": "not_analyzed"
+      },
+      "ip_address" : {
+          "type" : "string",
+          "store" : true,
+          "index" : "analyzed"
+      },
+      "url_base" : {
+          "type" : "string",
+          "store" : true,
+          "index" : "analyzed"
+      },
+      "url_full" : {
+          "type" : "string",
+          "store" : true,
+          "index" : "analyzed"
+      },
+      "hash" : {
+          "type" : "string",
+          "store" : true,
+          "index" : "not_analyzed"
+      },
+      "tag" : {
+          "type" : "string",
+          "store" : true,
+          "index": "not_analyzed"
+      },
+      "description" : {
+          "type" : "integer",
+          "store" : true,
+          "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+

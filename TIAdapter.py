@@ -12,5 +12,6 @@ class TIAdapter:
     def update_timestamp(self):
         self.__updated_time = time()
 
-    def 
+    def set_type(self):
+        self.__type = 
 
